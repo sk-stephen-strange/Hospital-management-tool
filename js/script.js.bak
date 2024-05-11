@@ -5,7 +5,7 @@ function checkLogin() {
     if (username === "admin" && password === "dwes12h2") {
         window.location.href = "receptionist/receptionist.html";
     } else if (username === "doctor" && password === "mydoc124") {
-        window.location.href = "receptionist/patients.html";
+        window.location.href = "doctor/doctor.html";
     } else {
         alert("Invalid credentials. Please try again.");
     }

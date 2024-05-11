@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Receptionist Dashboard</title>
+    <link href="../assets/img/favicon.png" rel="icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Firebase JavaScript SDK -->
+    <script type="module">
+        // Import the functions you need from the Firebase Realtime Database SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+        import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+  apiKey: "AIzaSyC0QjoBtrrZfE7N2jEtbtWpQth2pGkFfoI",
+  authDomain: "doctor-18819.firebaseapp.com",
+  databaseURL: "https://doctor-18819-default-rtdb.firebaseio.com",
+  projectId: "doctor-18819",
+  storageBucket: "doctor-18819.appspot.com",
+  messagingSenderId: "188530351316",
+  appId: "1:188530351316:web:401b9075fab283fd90ef41"
+};
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // Function to handle form submission
+        document.getElementById("submit").addEventListener('click', function(e){
+            e.preventDefault();
+
+            // Get form data
+            const date = document.getElementById("date").value;
+            const Patient_name = document.getElementById("Patient_name").value.trim();
+            const Gender = document.getElementById("Gender").value.trim();
+            const Contact = document.getElementById("Contact").value.trim();
+            const Reason_to_visit = document.getElementById("Reason_to_visit").value.trim();
+            const Insurance_Information = document.getElementById("Insurance_Information").value.trim();
+
+            // Set data into Firebase Realtime Database
+            push(ref(db, 'Patient_data/'), {
+                date: date,
+                Patient_name: Patient_name, 
+                Gender: Gender, 
+                Contact: Contact, 
+                Reason_to_visit: Reason_to_visit, 
+                Insurance_Information: Insurance_Information
+            }).then(() => {
+                alert("PatienT Details submitted successfully!");
+            }).catch(error => {
+                console.error('Error submitting data:', error);
+                alert('An error occurred. Please try again.');
+            });
+        });
+
+        // Set the default value for the date field
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById("date").value = today;
+
+            // Set default values for Patient Details fields
+            document.getElementById("Patient_name").value = ""; // Set empty string as default value
+            document.getElementById("Gender").value = "";
+            document.getElementById("Contact").value = "";
+            document.getElementById("Reason_to_visit").value = "";
+            document.getElementById("Insurance_Information").value = "";
+        });
+    </script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Receptionist Dashboard</h1>
+            <div class="nav-buttons">
+                <a href="#" class="btn">Home</a>
+                <a href="patients.html" class="btn">Patient List</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="box">
+            <div class="form">
+                <h2>Patient Information</h2>
+                <form>
+                    <div class="inputbox">
+                        <input type="date" value="" id="date" required>
+                        <span>Date</span>
+                    </div>
+                    <div class="inputbox">
+                        <input type="text" value="" id="Patient_name" required>
+                        <span>Patient Name</span>
+                    </div>
+                    <div class="inputbox">
+                        <input type="text" value="" id="Gender" required>
+                        <span>Gender</span>
+                    </div>
+                    <div class="inputbox">
+                        <input type="text" value="" id="Contact" required>
+                        <span> Contact</span>
+                    </div>
+                    <div class="inputbox">
+                        <input type="text" value="" id="Reason_to_visit" required>
+                        <span>Reason to visit</span>
+                    </div>
+                    <div class="inputbox">
+                        <input type="text" value="" id="Insurance_Information" required>
+                        <span>Insurance Information</span>
+                    </div>
+                    <input type="submit" value="Submit" class="sub" id="submit">
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

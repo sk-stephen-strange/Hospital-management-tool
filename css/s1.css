@@ -1,0 +1,60 @@
+/* CSS for the entire table */
+table {
+    margin: 4rem auto; /* Set margin and center the table horizontally */
+    width: 100%; /* Set the width of the table */
+    max-width: 100%; /* Limit the maximum width of the table */
+    background-color: #3b3a3a; /* Black background for the table */
+    border-collapse: collapse; /* Collapse table borders */
+    font-size: 18px; /* Font size for table */
+    border-radius: 10px; /* Rounded corners for the table */
+    overflow: hidden; /* Hide overflowing content */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+}
+
+/* Style for table headers */
+th {
+    padding: 12px; /* Padding for table headers */
+    text-align: left; /* Align text to the left */
+    background-color: rgb(255, 147, 32); /* Blue background for header */
+    color: white; /* White text color for header */
+    border: 1px solid rgb(255, 147, 32); /* Add blue border */
+}
+
+/* Style for table data */
+td {
+    padding: 12px; /* Padding for table data */
+    text-align: left; /* Align text to the left */
+    background-color: #2e2525; /* Black background for table data */
+    color: rgb(0, 255, 42); /* Green text color for all table data */
+    border: 1px solid #3b3a3a; /* Match table background color for border */
+    width: calc(100% / 6); /* Set each td to be 1/6th of the table width */
+}
+
+/* Style for date column */
+td:first-child {
+    color: rgb(234, 29, 70); /* Pink text color for date column */
+}
+
+/* Style for rows ending with '$' */
+td.red {
+    color: rgb(253, 74, 74); /* Red color for rows ending with '$' */
+}
+
+/* Style for rows ending with '!' */
+td.blue {
+    color: rgb(84, 250, 84); /* Blue color for rows ending with '!' */
+}
+
+/* Alternating row colors */
+tr:nth-child(even) {
+    background-color: #2e2525; /* Darker background for even rows */
+}
+
+tr:nth-child(odd) {
+    background-color: #332b2b; /* Slightly darker background for odd rows */
+}
+
+/* Style for rows with class 'pending' */
+.pending {
+    color: rgb(255, 0, 0); /* Red color for rows with class 'pending' */
+}
